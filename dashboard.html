@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <title>Dashboard - Evidența Studenților - Universitatea din Craiova</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/flag-icons.min.css" rel="stylesheet">
+    <link href="css/ev.css" rel="stylesheet">
+    <script src="js/pace.min.js"></script>
+    <link rel="stylesheet" href="css/pace-theme-default.min.css">
+    <style>
+    * { box-sizing: border-box; }
+    body { background-color: #ffffff; font-family: 'Open Sans', sans-serif; }
+    /* HEADER */
+    .ev-header {
+        background-color: #06038d;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        width: 100%;
+    }
+    .ev-header-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .ev-header img.logo {
+        height: 42px;
+    }
+    .btn-limba {
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        padding: 5px 10px;
+        font-size: 13px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #333;
+    }
+    .user-box {
+        border: 2px solid white;
+        border-radius: 4px;
+        padding: 5px 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: white;
+        font-size: 12px;
+    }
+    .user-box .user-avatar {
+        width: 32px;
+        height: 32px;
+        background-color: #ede9e9;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        color: #0890d0;
+    }
+    .user-box .user-info { line-height: 1.3; }
+    .user-box .user-role {
+        font-size: 11px;
+        color: #ffffff;
+    }
+    /* DASHBOARD CONTENT */
+    .dash-wrap {
+        background-color: #f7f9fa;
+        padding: 30px 20px;
+        width: 100%;
+    }
+    .dash-title {
+        text-align: center;
+        font-size: 2em;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 5px;
+    }
+    .dash-subtitle {
+        text-align: center;
+        color: #888;
+        font-size: 14px;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+    /* ALERT */
+    .dashboard-alert {
+        background-color: #fff3cd;
+        border: 1px solid #ffc107;
+        border-left: 5px solid #e44d26;
+        padding: 15px 20px;
+        margin-bottom: 25px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .dashboard-alert .alert-text {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #333;
+        font-size: 14px;
+    }
+    .dashboard-alert .alert-text i { color: #e44d26; font-size: 20px; }
+    .btn-alert {
+        background-color: #e44d26;
+        color: white;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 4px;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+    .btn-alert:hover { background-color: #c0392b; color: white; text-decoration: none; }
+    /* SECTIONS */
+    .dash-section {
+        background-color: #f7f9fa;
+        padding: 20px 0 30px 0;
+        margin-bottom: 0;
+        border-top: 1px solid #d0d4d9;
+        border-bottom: 1px solid #d0d4d9;
+    }
+    .dash-section-title {
+        font-size: 11px;
+        font-weight: 700;
+        color: #2a323f;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 10px 0 20px 0;
+        margin-bottom: 0;
+    }
+    .dash-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+    .dash-card {
+        background: white;
+        border: 1px solid #d5d5d5;
+        border-radius: 4px;
+        width: 220px;
+        height: 130px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        text-decoration: none;
+        color: #333;
+        gap: 10px;
+        box-shadow: 4px 4px 10px rgba(0,0,0,0.5), -2px -2px 5px rgba(0,0,0,0.2);
+        transition: box-shadow 0.2s;
+    }
+    .dash-card:hover {
+        box-shadow: none;
+        color: #333;
+        text-decoration: none;
+    }
+    .dash-card svg { width: 36px; height: 36px; }
+    .dash-card span { font-size: 13px; color: #536171; text-align: center; }
+    </style>
+</head>
+<body>
+<!-- HEADER -->
+<div class="ev-header">
+    <div class="ev-header-left">
+        <img class="logo" src="images/ucv-logo-small.png" alt="UCV">
+        <button class="btn-limba" type="button">
+            <span class="fi fi-ro"></span> Română ▾
+        </button>
+    </div>
+    <div class="user-box">
+        <div class="user-info">
+            <div style="font-weight:bold;">Student</div>
+            <div class="user-role">ROL: STUDENT ▾</div>
+        </div>
+        <div class="user-avatar">
+            <i class="fa fa-user"></i>
+        </div>
+    </div>
+</div>
+<!-- CONTENT -->
+<div class="dash-wrap">
+    <h1 class="dash-title">Dashboard.</h1>
+    <p class="dash-subtitle">
+        Alegeți din instrumentele disponibile contului dumneavoastră.<br>
+        Consultați documentația pentru mai multe informații legate de serviciile disponibile.
+    </p>
+    <!-- BANNER DOCUMENTE LIPSA -->
+    <div class="dashboard-alert">
+        <div class="alert-text">
+            <i class="fa fa-exclamation-triangle"></i>
+            <div>
+                <strong>Documente lipsă - vă rugăm să completați dosarul</strong><br>
+                <small>Contul dumneavoastră are documente neîncărcate. Accesul la unele servicii poate fi restricționat.</small>
+            </div>
+        </div>
+        <a href="documente.html" class="btn-alert">Completați dosarul &rarr;</a>
+    </div>
+    <!-- ADMINISTRARE -->
+    <div class="dash-section">
+        <div class="dash-section-title">Administrare</div>
+        <div class="dash-cards">
+            <a href="#" class="dash-card">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="10" r="5" stroke="#16C98D" stroke-width="2" fill="none"/>
+                    <path d="M6 26c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#16C98D" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <circle cx="23" cy="8" r="3" stroke="#16C98D" stroke-width="1.5" fill="none"/>
+                    <line x1="21" y1="10" x2="25" y2="6" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Profil</span>
+            </a>
+        </div>
+    </div>
+    <!-- ACADEMIC -->
+    <div class="dash-section">
+        <div class="dash-section-title">Academic</div>
+        <div class="dash-cards">
+            <a href="#" class="dash-card">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="6" y="4" width="20" height="24" rx="2" stroke="#16C98D" stroke-width="2" fill="none"/>
+                    <line x1="10" y1="10" x2="22" y2="10" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="15" x2="22" y2="15" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="10" y1="20" x2="17" y2="20" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="24" cy="24" r="4" stroke="#16C98D" stroke-width="1.5" fill="none"/>
+                    <line x1="22" y1="24" x2="24" y2="24" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="24" y1="22" x2="24" y2="24" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Dosare admitere</span>
+            </a>
+            <a href="#" class="dash-card">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="10" stroke="#16C98D" stroke-width="2" fill="none"/>
+                    <circle cx="16" cy="16" r="5" stroke="#16C98D" stroke-width="1.5" fill="none"/>
+                    <line x1="16" y1="6" x2="16" y2="11" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="16" y1="21" x2="16" y2="26" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="6" y1="16" x2="11" y2="16" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="21" y1="16" x2="26" y2="16" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Parcurs academic</span>
+            </a>
+        </div>
+    </div>
+    <!-- FINANCIAR -->
+    <div class="dash-section">
+        <div class="dash-section-title">Financiar</div>
+        <div class="dash-cards">
+            <a href="#" class="dash-card">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="10" stroke="#16C98D" stroke-width="2" fill="none"/>
+                    <circle cx="16" cy="16" r="5" stroke="#16C98D" stroke-width="1.5" fill="none"/>
+                    <line x1="16" y1="6" x2="16" y2="11" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="16" y1="21" x2="16" y2="26" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="6" y1="16" x2="11" y2="16" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="21" y1="16" x2="26" y2="16" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Taxe</span>
+            </a>
+            <a href="#" class="dash-card">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="10" stroke="#16C98D" stroke-width="2" fill="none"/>
+                    <circle cx="16" cy="16" r="5" stroke="#16C98D" stroke-width="1.5" fill="none"/>
+                    <line x1="16" y1="6" x2="16" y2="11" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="16" y1="21" x2="16" y2="26" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="6" y1="16" x2="11" y2="16" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="21" y1="16" x2="26" y2="16" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Burse</span>
+            </a>
+            <a href="#" class="dash-card">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="10" stroke="#16C98D" stroke-width="2" fill="none"/>
+                    <circle cx="16" cy="16" r="5" stroke="#16C98D" stroke-width="1.5" fill="none"/>
+                    <line x1="16" y1="6" x2="16" y2="11" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="16" y1="21" x2="16" y2="26" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="6" y1="16" x2="11" y2="16" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="21" y1="16" x2="26" y2="16" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Abonamente</span>
+            </a>
+        </div>
+    </div>
+    <!-- GESTIUNE CAZARI -->
+    <div class="dash-section">
+        <div class="dash-section-title">Gestiune Cazări</div>
+        <div class="dash-cards">
+            <a href="#" class="dash-card">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="10" stroke="#16C98D" stroke-width="2" fill="none"/>
+                    <circle cx="16" cy="16" r="5" stroke="#16C98D" stroke-width="1.5" fill="none"/>
+                    <line x1="16" y1="6" x2="16" y2="11" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="16" y1="21" x2="16" y2="26" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="6" y1="16" x2="11" y2="16" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="21" y1="16" x2="26" y2="16" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Cereri cazare</span>
+            </a>
+        </div>
+    </div>
+    <!-- DIVERSE -->
+    <div class="dash-section">
+        <div class="dash-section-title">Diverse</div>
+        <div class="dash-cards">
+            <a href="#" class="dash-card">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="10" stroke="#16C98D" stroke-width="2" fill="none"/>
+                    <circle cx="16" cy="16" r="5" stroke="#16C98D" stroke-width="1.5" fill="none"/>
+                    <line x1="16" y1="6" x2="16" y2="11" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="16" y1="21" x2="16" y2="26" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="6" y1="16" x2="11" y2="16" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="21" y1="16" x2="26" y2="16" stroke="#16C98D" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Programări online</span>
+            </a>
+        </div>
+    </div>
+</div>
+<div style="height:30px;"></div>
+<!-- FOOTER -->
+<footer class="page-block">
+    <div class="wrapper">
+        <nav>
+            <div class="row row-bordered">
+               <div class="col-xs-3 footer-nav-group">
+                    <div class="title">Portal UCV</div>
+                    <div class="body">
+                        <a class="link" href="#">Despre</a>
+                        <a class="link" href="#">Contact</a>
+                        <a class="link" href="#">Ajutor</a>
+                        <a class="link" href="#">Recuperare parola</a>
+                    </div>
+               </div>
+               <div class="col-xs-3 footer-nav-group">
+                    <div class="title">UCV</div>
+                    <div class="body">
+                        <a class="link" target="_blank" href="http://www.ucv.ro/admitere/">Admitere</a>
+                        <a class="link" target="_blank" href="http://www.ucv.ro/studenti/">Studenți</a>
+                        <a class="link" target="_blank" href="http://www.ucv.ro/campus/">Campus</a>
+                    </div>
+               </div>
+               <div class="col-xs-3 footer-nav-group">
+                    <div class="title">Evidența Studenților</div>
+                    <div class="body">
+                        <a class="link" target="_blank" href="http://cis01.central.ucv.ro/evstud/structura/">Structura UCV</a>
+                        <a class="link" target="_blank" href="http://cis01.central.ucv.ro/evstud/planuri/">Planuri de învățământ</a>
+                        <a class="link" target="_blank" href="http://cis01.central.ucv.ro/evstud/">EvStud</a>
+                    </div>
+               </div>
+               <div class="col-xs-3 footer-nav-group">
+                    <div class="title">Suport</div>
+                    <div class="body">
+                        <a class="link" href="#">Termeni și condiții</a>
+                        <a class="link" href="#">Prelucrarea datelor cu caracter personal</a>
+                        <a class="link" href="#">Politica de utilizare Cookie-uri</a>
+                        <a class="link" target="_blank" href="http://www.anpc.gov.ro/">ANPC</a>
+                    </div>
+               </div>
+            </div>
+        </nav>
+    </div>
+</footer>
+<div style="height:30px;"></div>
+<footer class="footer-legal">
+    <div class="wrapper">
+        <nav>
+            <div class="row">
+               <div class="col-xs-6">
+                    <div class="footer-logo-media">
+                        <img src="images/ucv-logo-small.png" alt="Universitatea din Craiova">
+                    </div>
+                    <div class="footer-logo-desc">
+                        <span class="copyright">© 2017-2023 Universitatea din Craiova. Toate drepturile rezervate.</span>
+                        <p>Universitatea din Craiova (ucv.ro) este înregistrată în Registrul de evidență a prelucrărilor de date cu caracter personal sub numărul 10883.</p>
+                    </div>
+               </div>
+               <div class="col-xs-6">
+                    <div class="links">
+                        <a class="one-link" href="https://www.ucv.ro" target="_blank">Universitatea din Craiova</a>
+                        <a class="one-link" href="evstud_phishing.html">Logout</a>
+                    </div>
+               </div>
+            </div>
+        </nav>
+    </div>
+</footer>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
