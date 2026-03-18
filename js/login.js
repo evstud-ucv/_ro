@@ -1,22 +1,20 @@
 $(document).ready(function() {
-    var t1 = new Date().getTime();
-    var t2 = null;
-    var pas = "cnp";
 
-    $("#frmVerCnp").off("submit").on("submit", function(e) {
+    $("#frmVerCnp").on("submit", function(e) {
         e.preventDefault();
 
-        if (pas === "cnp") {
-            t2 = new Date().getTime();
+        var step = $("input[name='step']").val();
+
+        if (step === "cnp") {
+            // trece la pasul 2 - parola
             $(".only-cnp").hide();
             $(".only-pass").removeClass("collapse").show();
-            $("#inputPass").prop("required", false);
-            pas = "pass";
+            $("input[name='step']").val("pass");
 
-        } else {
-            setTimeout(function() {
-                window.location.href = "dashboard.html";
-            }, 500);
+        } else if (step === "pass") {
+            // orice parola -> dashboard
+            window.location.href = "dashboard.html";
         }
     });
+
 });
