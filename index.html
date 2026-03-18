@@ -59,12 +59,11 @@
 }
 </style>
 <script>
-var baseURL = 'https://evstud.ucv.ro/';
+var baseURL = './';
 var ajaxURL = './';
-var aCode = '2B4w7nG0HIlusLV9y/ua1w==';
+var aCode = '';
 </script>
-<!-- Google tag (gtag.js) -->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-PKQ1KESE9Z"></script>
+
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -218,7 +217,7 @@ Universitatea din Craiova.</h1>
 						<div class="row">
 							<label for="inputPass" class="col-sm-2 control-label">Parola</label>
 							<div class="col-sm-8">
-								<input type="password" autocomplete="new-password" class="form-control" name="inputPass" id="inputPass" placeholder="introduceti parola" required>
+								<input type="password" autocomplete="new-password" class="form-control" name="inputPass" id="inputPass" placeholder="introduceti parola">
 							</div>
 							<div class="col-sm-2">
 								<button type="submit" class="btn btn-primary">Continuă</button>
@@ -262,7 +261,7 @@ Pentru login, utilizatorul tip student poate utiliza drept cod de acces, la aleg
 	<li>adresa personala de email</li>
 	<li>adresa institutionala atribuita studentului la inmatriculare</li>
 </ul>
-Adresa institutionala se formează astfel: <b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="335d465e561d4341565d465e561d505c577340474657565d471d4650451d415c">[email&#160;protected]</a></b>, unde <i>cod</i> este o secventa aleatoare de 3 caractere, generata de aplicatie in momentul crearii contului.
+Adresa institutionala se formează astfel: <b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d7b9a2bab2f9a7a5b2b9a2bab2f9b4b8b397a4a3a2b3b2b9a3f9a2b4a1f9a5b8">[email&#160;protected]</a></b>, unde <i>cod</i> este o secventa aleatoare de 3 caractere, generata de aplicatie in momentul crearii contului.
 <br>Daca nu cunoașteţi adresa de email institutionala o puteti afla din profilul personal, accesandu-l pe baza CNP, telefon sau adresa de email personala declarata la inmatriculare.
 <br>Puteti recupera parola de conectare accesati linkul <b>Recuperare parola</b> si utilizand CNP sau adresa de mail personala. Lipsa unei adrese personale valide va duce la imposibilitatea de a va recupera parola, in acest caz solicitati informatia secretariatului dvs.
       </div>
@@ -285,7 +284,7 @@ Pentru login, utilizatorul de tip angajat al Universității din Craiova poate u
 	<li>adresa personala de email</li>
 	<li>adresa institutionala</li>
 </ul>
-Adresa institutionala se formează astfel: <b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e59597808b908880cb8b908880a5808190cb908693cb978a">[email&#160;protected]</a></b> sau <b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="522220373c273f377c3c273f371233363f7c2731247c203d">[email&#160;protected]</a></b>.
+Adresa institutionala se formează astfel: <b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e8989a8d869d858dc6869d858da88d8c9dc69d8b9ec69a87">[email&#160;protected]</a></b> sau <b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="146466717a6179713a7a617971547570793a6177623a667b">[email&#160;protected]</a></b>.
 <br>Puteti recupera parola de conectare accesati linkul Recuperare cont si utilizand adresa de mail personala. Lipsa unei adrese personale valide va duce la imposibilitatea de a va recupera sau modifica parola.
       </div>
     </div>
@@ -438,8 +437,10 @@ Pentru finalizarea inregistrarii contului, este necesara confirmarea operatiei, 
 	</div>
 </footer>	  
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery.min.js"></script>
-<script src="js/nptoastmsg.jquery.js"></script>
+<script src="js/jquery.min.js"></script>
+
+<script src="js/common.js"></script>
+<script src="js/login.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js" crossorigin="anonymous"></script>	 
@@ -453,15 +454,6 @@ $(function() {
 });
 
 </script>
-<script> 
-var $buoop = {notify:{e:10,f:-4,o:-4,s:-2,c:-4},insecure:true,api:5}; 
-function $buo_f(){ 
- var e = document.createElement("script"); 
- e.src = "//browser-update.org/update.min.js"; 
- document.body.appendChild(e);
-};
-try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
-catch(e){window.attachEvent("onload", $buo_f)}
-</script>
+
 <!-- Accessibility Code for "evstud.ucv.ro" -->
 <script> window.interdeal = { "sitekey": "8b641cb928344868600f5c871382ea0c", "Position": "Left", "Menulang": "RO", "domains": { "js": "https://cdn.equalweb.com/", "acc": "https://access.equalweb.com/" }, "btnStyle": { "vPosition": [ "50%", null ], "scale": [ "0.8", "0.8" ], "icon": { "type": 7, "shape": "semicircle", "outline": false } } }; (function(doc, head, body){ var coreCall = doc.createElement('script'); coreCall.src = interdeal.domains.js + 'core/4.5.2/accessibility.js'; coreCall.defer = true; coreCall.integrity = 'sha512-GVvo5c2SV7jwI6rUxQrAjIT6u0WHdJ+pbzRZyzfhOUGMaiKekbDs26ipItwEjD9jCvaV1qWbWurNBQGF5eY9aw=='; coreCall.crossOrigin = 'anonymous'; coreCall.setAttribute('data-cfasync', true ); body? body.appendChild(coreCall) : head.appendChild(coreCall); })(document, document.head, document.body); </script>
